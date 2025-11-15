@@ -5,6 +5,6 @@ class Genus < ApplicationRecord
   has_many :species, dependent: :nullify
   
   validates :latin_name, presence: true
-  validates :latin_name, uniqueness: { scope: :family_id, allow_nil: true }
+  validates :latin_name, uniqueness: { scope: :family_id }, if: -> { family_id.present? }
 end
 
